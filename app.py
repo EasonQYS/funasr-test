@@ -1,7 +1,11 @@
 import gradio as gr
 #SDK模型下载
 from modelscope import snapshot_download
-model_dir = snapshot_download('iic/SenseVoiceSmall')
+local_path = '/home/xlab-app-center/.cache/modelscope/hub/iic/SenseVoiceSmall'
+if os.path.exists(local_path):
+    print("文件已存在:", local_path)
+else:
+    model_dir = snapshot_download('iic/SenseVoiceSmall')
 from funasr import AutoModel
 from funasr.utils.postprocess_utils import rich_transcription_postprocess
 
@@ -17,6 +21,7 @@ model = AutoModel(
 
 def do(a):
     print(a)
+    return a
     res = model.generate(
         input=a,
         cache={},
