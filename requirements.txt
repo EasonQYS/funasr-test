@@ -1,0 +1,6 @@
+modelscope
+funasr
+simplejson
+sortedcontainers
+torchaudio
+rotary_embedding_torch
