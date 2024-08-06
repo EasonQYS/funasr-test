@@ -1,5 +1,5 @@
 import gradio as gr
-import os,sqlite
+import os,sqlite3
 #SDK模型下载
 from modelscope import snapshot_download
 local_path = '/home/xlab-app-center/.cache/modelscope/hub/iic/SenseVoiceSmall'
