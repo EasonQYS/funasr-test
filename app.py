@@ -5,6 +5,7 @@ from funasr import AutoModel
 from funasr.utils.postprocess_utils import rich_transcription_postprocess
 
 print(os.system('ls -la /home/xlab-app-center/.cache/'))
+print(os.system('ls -la /home/xlab-app-center/.cache/modelscope'))
 print(os.system('ls -la /home/.cache/'))
 
 local_path = '/home/xlab-app-center/SenseVoiceSmall'
@@ -78,7 +79,7 @@ def do2(a):
 
     # 关闭连接
     conn.close()
-    return './data.json'
+    return '/home/xlab-app-center/data.json'
     
 with gr.Blocks() as demo:
     with gr.Row():
