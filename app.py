@@ -4,6 +4,8 @@ from modelscope import snapshot_download
 from funasr import AutoModel
 from funasr.utils.postprocess_utils import rich_transcription_postprocess
 
+print(os.system('ls -la /home/xlab-app-center/.cache/'))
+print(os.system('ls -la /home/.cache/'))
 
 local_path = '/home/xlab-app-center/SenseVoiceSmall'
 if os.path.exists(local_path):
