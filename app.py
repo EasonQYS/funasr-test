@@ -1,5 +1,5 @@
 import gradio as gr
-import os,sqlite3
+import os,sqlite3,shutil
 from modelscope import snapshot_download
 from funasr import AutoModel
 from funasr.utils.postprocess_utils import rich_transcription_postprocess
@@ -20,21 +20,25 @@ model = AutoModel(
 print('after model')
 
 def do(a):
-    print(a)
-    return a
+    #print(a.name)
+    path = "./" + os.path.basename(a.name)  #NB*
+    shutil.copyfile(a.name, path)
     res = model.generate(
-        input=a,
+        input=path,
         cache={},
         language="zh", # "zn", "en", "yue", "ja", "ko", "nospeech"
         use_itn=True,
         batch_size=64, 
     )
     text = rich_transcription_postprocess(res[0]["text"])
-    print(text)
+    #print(text)
     return text
+    
 def do2(a):
     print(a)
-    conn = sqlite3.connect(a)
+    path = "./" + os.path.basename(a.name)  #NB*
+    shutil.copyfile(a.name, path)
+    conn = sqlite3.connect(path)
     cursor = conn.cursor()
     filename = 'data.json'
     # 执行SQL查询
@@ -76,7 +80,7 @@ def do2(a):
     
 with gr.Blocks() as demo:
     with gr.Row():
-        a = gr.Audio(label='待转换的mp3',type='filepath')
+        a = gr.File(label='待转换的mp3',file_types=['.mp3'])
         t = gr.Textbox(label='转换文本的结果')
     b = gr.Button("立即转换")
     with gr.Row():
