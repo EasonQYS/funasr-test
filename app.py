@@ -83,6 +83,7 @@ with gr.Blocks() as demo:
         f1 = gr.File(file_types=['.db'])
         b2 = gr.Button("语音转文本")
         f2 = gr.File()
+    file_path = gr.FileExplorer(root_dir='./')
     b.click(do, inputs=a,outputs=t)
     b2.click(do2, inputs=f1,outputs=f2)
     
