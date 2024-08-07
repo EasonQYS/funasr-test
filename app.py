@@ -5,7 +5,8 @@ from funasr import AutoModel
 from funasr.utils.postprocess_utils import rich_transcription_postprocess
 
 print(os.system('ls -la /home/xlab-app-center/.cache/'))
-print(os.system('ls -la /home/xlab-app-center/.cache/modelscope'))
+print(os.system('ls -la /cache'))
+print(os.system('ls -la /Temp'))
 
 local_path = '/home/xlab-app-center/.cache/modelscope/hub/iic/SenseVoiceSmall'
 if os.path.exists(local_path):
