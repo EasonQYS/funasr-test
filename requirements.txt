@@ -4,4 +4,3 @@ simplejson
 sortedcontainers
 torchaudio
 rotary_embedding_torch
-pysqlite3
