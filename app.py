@@ -1,24 +1,23 @@
 import gradio as gr
 import os,sqlite3
-#SDK模型下载
 from modelscope import snapshot_download
-local_path = '/home/xlab-app-center/.cache/modelscope/hub/iic/SenseVoiceSmall'
-if os.path.exists(local_path):
-    print("文件已存在:", local_path)
-else:
-    model_dir = snapshot_download('iic/SenseVoiceSmall')
 from funasr import AutoModel
 from funasr.utils.postprocess_utils import rich_transcription_postprocess
 
-model_dir = "iic/SenseVoiceSmall"
 
+local_path = '/home/xlab-app-center/SenseVoiceSmall'
+if os.path.exists(local_path):
+    print("文件已存在:", local_path)
+else:
+    model_dir = snapshot_download('iic/SenseVoiceSmall',local_dir=local_path)
+print('pre model')
 model = AutoModel(
-    model=model_dir,
-    trust_remote_code=True,
+    model=local_path,
     vad_model="fsmn-vad",
     vad_kwargs={"max_single_segment_time": 30000},
     device="cpu",
 )
+print('after model')
 
 def do(a):
     print(a)
@@ -82,8 +81,8 @@ with gr.Blocks() as demo:
     b = gr.Button("立即转换")
     with gr.Row():
         f1 = gr.File(file_types=['.db'])
-        b2 = gr.Button("立即转换")
-        f2 = gr.File(file_types=['.json'])
+        b2 = gr.Button("语音转文本")
+        f2 = gr.File()
     b.click(do, inputs=a,outputs=t)
     b2.click(do2, inputs=f1,outputs=f2)
     
