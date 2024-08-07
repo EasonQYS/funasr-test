@@ -94,6 +94,7 @@ with gr.Blocks() as demo:
         f1 = gr.File(file_types=['.db'],label='数据库聊天记录')
         b2 = gr.Button("数据库转json")
         f2 = gr.File(label='数据语料下载')
+    gr.Markdown('## Part 3: 当前服务器的文件树')
     file_path = gr.FileExplorer(root_dir='./')
     b.click(do, inputs=a,outputs=t)
     b2.click(do2, inputs=f1,outputs=f2)
