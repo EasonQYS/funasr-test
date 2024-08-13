@@ -1,3 +1,7 @@
-streamlit
-transformers
-dataclasses
+modelscope
+funasr
+simplejson
+sortedcontainers
+torchaudio
+rotary_embedding_torch
+gradio==4.29.0
